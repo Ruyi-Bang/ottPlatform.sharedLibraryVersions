@@ -1,0 +1,25 @@
+plugins {
+    id 'maven-publish'
+    id 'version-catalog'  // ✅ Required for publishing catalogs properly
+}
+
+group = "RuyiBang"
+version = "1.0.X"
+
+catalog {
+    versionCatalog {
+        from(files("gradle/libs.versions.toml"))
+    }
+}
+
+publishing {
+    publications {
+        versionCatalog(MavenPublication) {
+            from components.versionCatalog    // ✅ This is the magic line
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
+}

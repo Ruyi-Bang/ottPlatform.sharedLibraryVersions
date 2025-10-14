@@ -1,0 +1,21 @@
+[versions]
+springBoot = "3.3.5"
+jjwt = "0.12.6"
+logstashEncoder = "7.4"
+java = "1.10"
+
+[libraries]
+springBootWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
+springBootSecurity = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "springBoot" }
+springBootTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBoot" }
+
+jjwtApi = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwtImpl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwtJackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
+
+logbackClassic = { module = "ch.qos.logback:logback-classic" }
+logstash = { module = "net.logstash.logback:logstash-logback-encoder", version.ref = "logstashEncoder" }
+
+[plugins]
+springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
+dependencyManagement = { id = "io.spring.dependency-management", version = "1.1.7" }
