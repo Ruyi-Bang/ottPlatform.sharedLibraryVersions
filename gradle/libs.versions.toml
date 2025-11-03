@@ -3,6 +3,7 @@ springBoot = "3.3.5"
 jjwt = "0.12.6"
 logstashEncoder = "7.4"
 java = "1.10"
+postgres= "42.7.3"
 
 [libraries]
 springBootWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
