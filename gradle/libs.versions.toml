@@ -1,9 +1,10 @@
 [versions]
-springBoot = "3.3.5"
+springBoot = "3.5.5"
 jjwt = "0.12.6"
 logstashEncoder = "7.4"
 java = "1.10"
 postgres= "42.7.3"
+logback = "1.5.19"
 
 [libraries]
 springBootWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
@@ -14,7 +15,8 @@ jjwtApi = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
 jjwtImpl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
 jjwtJackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 
-logbackClassic = { module = "ch.qos.logback:logback-classic" }
+logbackClassic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+logbackCore = { module = "ch.qos.logback:logback-core", version.ref = "logback" }
 logstash = { module = "net.logstash.logback:logstash-logback-encoder", version.ref = "logstashEncoder" }
 
 [plugins]
