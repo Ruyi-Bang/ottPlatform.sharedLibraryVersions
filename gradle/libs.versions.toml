@@ -5,11 +5,13 @@ logstashEncoder = "7.4"
 java = "1.10"
 postgres= "42.7.3"
 logback = "1.5.19"
+lombok="1.18.38"
 
 
 [libraries]
 springBootWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
 springBootSecurity = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "springBoot" }
+springBootJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa",  version.ref = "springBoot" }
 springBootTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBoot" }
 
 jjwtApi = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
