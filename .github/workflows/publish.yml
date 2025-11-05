@@ -61,6 +61,11 @@ jobs:
           echo "Computed base: $BASE; last-base-commit: $LAST_BASE_COMMIT; count-since: $COUNT"
           echo "version=$V" >> "$GITHUB_OUTPUT"
           echo "Computed version: $V"
+      - name: Verify secrets present
+        run: |
+          test -n "${{ secrets.GPR_USER }}" || (echo "Missing GPR_USER" && exit 1)
+          test -n "${{ secrets.GPR_KEY }}"  || (echo "Missing GPR_KEY" && exit 1)
+          echo "Secrets exist."
 
   publish:
     runs-on: ubuntu-latest
