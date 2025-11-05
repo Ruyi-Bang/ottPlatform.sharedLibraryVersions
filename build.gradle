@@ -1,10 +1,10 @@
 plugins {
     id 'maven-publish'
-    id 'version-catalog'  // ✅ Required for publishing catalogs properly
+    id 'version-catalog'
 }
 
-group = "RuyiBang"
-version = "1.0.X"
+group = 'org.ruyibang'   // ✅ domain-style, lowercase
+version =  (findProperty("projectVersion") ?: "0.0-SNAPSHOT") // <-- set base here: "0.0-SNAPSHOT", "1.0-SNAPSHOT", etc.
 
 catalog {
     versionCatalog {
@@ -15,19 +15,20 @@ catalog {
 publishing {
     publications {
         versionCatalog(MavenPublication) {
-            from components.versionCatalog
+            from(components.versionCatalog)
+
+            // ✅ Make coordinates explicit & GitHub-friendly
+            groupId = 'org.ruyibang'
+            artifactId = 'ottPlatform.sharedLibraryVersions'  // avoid dots
+            version = project.version
         }
     }
-
     repositories {
         mavenLocal()
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/Ruyi-Bang/ottPlatform.sharedLibraryVersions")
-
-            // No secrets hardcoded. These are injected at runtime by CI.
             credentials {
-                // Prefer Gradle project props first (from CI), fall back to env (also from CI/Render)
                 username = findProperty("githubUsername") ?: System.getenv("GPR_USER")
                 password = findProperty("githubToken")    ?: System.getenv("GPR_KEY")
             }
