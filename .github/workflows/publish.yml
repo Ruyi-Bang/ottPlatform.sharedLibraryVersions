@@ -1,0 +1,21 @@
+name: Publish to GitHub Packages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Publish to GitHub Packages
+        run: ./gradlew publish
+        env:
+          GPR_USER: ${{ secrets.GPR_USER }}
+          GPR_KEY: ${{ secrets.GPR_KEY }}

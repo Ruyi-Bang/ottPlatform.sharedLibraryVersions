@@ -21,5 +21,16 @@ publishing {
 
     repositories {
         mavenLocal()
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Ruyi-Bang/ottPlatform.sharedLibraryVersions")
+
+            // No secrets hardcoded. These are injected at runtime by CI.
+            credentials {
+                // Prefer Gradle project props first (from CI), fall back to env (also from CI/Render)
+                username = findProperty("githubUsername") ?: System.getenv("GPR_USER")
+                password = findProperty("githubToken")    ?: System.getenv("GPR_KEY")
+            }
+        }
     }
 }
