@@ -3,8 +3,8 @@ plugins {
     id 'version-catalog'
 }
 
-group = 'org.ruyibang'   // ✅ domain-style, lowercase
-version =  (findProperty("projectVersion") ?: "0.0-SNAPSHOT") // <-- set base here: "0.0-SNAPSHOT", "1.0-SNAPSHOT", etc.
+group = 'org.ruyibang'
+version = (findProperty("projectVersion") ?: "0.0-SNAPSHOT")
 
 catalog {
     versionCatalog {
@@ -17,14 +17,13 @@ publishing {
         versionCatalog(MavenPublication) {
             from(components.versionCatalog)
 
-            // ✅ Make coordinates explicit & GitHub-friendly
             groupId = 'org.ruyibang'
-            artifactId = 'ottPlatform.sharedLibraryVersions'  // avoid dots
+            artifactId = 'ott-platform-shared-versions'   // <<< change: no dots
             version = project.version
         }
     }
     repositories {
-        mavenLocal()
+        // mavenLocal()   // optional; you can remove it for CI
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/Ruyi-Bang/ottPlatform.sharedLibraryVersions")
